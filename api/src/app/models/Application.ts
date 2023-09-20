@@ -14,6 +14,11 @@ export const Application = model('Application', new Schema({
     enum: ['yes', 'no'],
     default: 'yes',
   },
+  status: {
+    type: Schema.Types.ObjectId,
+    required: true,
+    ref: 'Status',
+  },
   user: {
     type: Schema.Types.ObjectId,
     required: true,

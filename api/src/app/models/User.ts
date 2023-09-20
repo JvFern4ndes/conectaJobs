@@ -9,6 +9,10 @@ export const User = model('User', new Schema({
     type: String,
     required: true,
   },
+  imagePath: {
+    type: String,
+    required: false,
+  },
   age: {
     type: Number,
     required: true,
@@ -26,5 +30,9 @@ export const User = model('User', new Schema({
   password: {
     type: String,
     required: true,
+  },
+  application: {
+    type: Schema.Types.ObjectId,
+    ref: 'Application',
   }
 }));
