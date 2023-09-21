@@ -1,16 +1,21 @@
 import { Router } from 'express';
 
+import { createStatus } from './app/useCases/status/createStatus';
 import { listStatus } from './app/useCases/status/listStatus';
+import { listApplications } from './app/useCases/applications/listApplications';
 
 export const router = Router();
 
 // Create Status
-router.post('/status', (req, res) => {
-  res.send('OK');
-});
+router.post('/status', createStatus);
 
 // List Status
 router.get('/status', listStatus);
+
+// Update Status
+router.patch('/status/:statusId', (req, res) => {
+  res.send('OK');
+});
 
 // Create Application
 router.post('/applications', (req, res) => {
@@ -18,9 +23,7 @@ router.post('/applications', (req, res) => {
 });
 
 // List Applications
-router.get('/applications', (req, res) => {
-  res.send('OK');
-});
+router.get('/applications', listApplications);
 
 // Get Applications by Status
 router.get('/status/:statusId/applications', (req, res) => {

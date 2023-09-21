@@ -18,10 +18,5 @@ export const Application = model('Application', new Schema({
     type: Schema.Types.ObjectId,
     required: true,
     ref: 'Status',
-  },
-  user: {
-    type: Schema.Types.ObjectId,
-    required: true,
-    ref: 'User',
   }
 }));
