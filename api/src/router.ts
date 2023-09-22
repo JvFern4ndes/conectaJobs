@@ -1,10 +1,28 @@
+import path from 'node:path';
+
 import { Router } from 'express';
+import multer from 'multer';
 
 import { createStatus } from './app/useCases/status/createStatus';
 import { listStatus } from './app/useCases/status/listStatus';
 import { listApplications } from './app/useCases/applications/listApplications';
+import { listUsers } from './app/useCases/users/listUsers';
+import { createUser } from './app/useCases/users/createUser';
+import { createApplication } from './app/useCases/applications/createApplication';
+import { listApplicationsByStatus } from './app/useCases/status/listApplicationsByStatus';
 
 export const router = Router();
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination(req, file, callback) {
+      callback(null, path.resolve(__dirname, '..', 'uploads'));
+    },
+    filename(req, file, callback) {
+      callback(null, `${Date.now()}-${file.originalname}`);
+    },
+  }),
+});
 
 // Create Status
 router.post('/status', createStatus);
@@ -18,17 +36,13 @@ router.patch('/status/:statusId', (req, res) => {
 });
 
 // Create Application
-router.post('/applications', (req, res) => {
-  res.send('OK');
-});
+router.post('/applications', createApplication);
 
 // List Applications
 router.get('/applications', listApplications);
 
 // Get Applications by Status
-router.get('/status/:statusId/applications', (req, res) => {
-  res.send('OK');
-});
+router.get('/status/:statusId/applications', listApplicationsByStatus);
 
 // Update Application
 
@@ -43,14 +57,10 @@ router.patch('/applications/:applicationId', (req, res) => {
 });
 
 // Create User
-router.post('/users', (req, res) => {
-  res.send('OK');
-});
+router.post('/users', upload.single('image'), createUser);
 
 // List Users
-router.get('/users', (req, res) => {
-  res.send('OK');
-});
+router.get('/users', listUsers);
 
 // Update User
 router.patch('/user/:userId', (req, res) => {

@@ -6,6 +6,12 @@ export async function createStatus(req: Request, res: Response) {
   try {
     const { imagePath, name } = req.body;
 
+    if (!name) {
+      return res.status(400).json({
+        error: 'Name is required',
+      });
+    }
+
     const status = await Status.create({ imagePath, name });
 
     res.status(201).json(status);

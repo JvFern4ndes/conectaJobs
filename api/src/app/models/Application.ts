@@ -5,6 +5,10 @@ export const Application = model('Application', new Schema({
     type: String,
     required: true,
   },
+  company: {
+    type: String,
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
@@ -16,7 +20,7 @@ export const Application = model('Application', new Schema({
   },
   status: {
     type: Schema.Types.ObjectId,
-    required: true,
     ref: 'Status',
+    default: '650b890adc317d1d6fd2a55c',
   }
 }));
