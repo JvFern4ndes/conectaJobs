@@ -10,6 +10,7 @@ import { listUsers } from './app/useCases/users/listUsers';
 import { createUser } from './app/useCases/users/createUser';
 import { createApplication } from './app/useCases/applications/createApplication';
 import { listApplicationsByStatus } from './app/useCases/status/listApplicationsByStatus';
+import { changeApplicationStatus } from './app/useCases/applications/changeApplicationStatus';
 
 export const router = Router();
 
@@ -47,9 +48,7 @@ router.get('/status/:statusId/applications', listApplicationsByStatus);
 // Update Application
 
 // Change Application Status
-router.patch('/applications/:applicationId', (req, res) => {
-  res.send('OK');
-});
+router.patch('/applications/:applicationId', changeApplicationStatus);
 
 // Delete Application
 router.patch('/applications/:applicationId', (req, res) => {
