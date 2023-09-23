@@ -4,7 +4,8 @@ import { Status } from '../../models/Status';
 
 export async function createStatus(req: Request, res: Response) {
   try {
-    const { imagePath, name } = req.body;
+    const imagePath = req.file?.filename;
+    const { name } = req.body;
 
     if (!name) {
       return res.status(400).json({

@@ -33,7 +33,7 @@ const upload = multer({
 // STATUS
 
 // Create Status
-router.post('/status', createStatus);
+router.post('/status', upload.single('image'), createStatus);
 
 // List Status
 router.get('/status', listStatus);
