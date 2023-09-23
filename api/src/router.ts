@@ -11,6 +11,11 @@ import { createUser } from './app/useCases/users/createUser';
 import { createApplication } from './app/useCases/applications/createApplication';
 import { listApplicationsByStatus } from './app/useCases/status/listApplicationsByStatus';
 import { changeApplicationStatus } from './app/useCases/applications/changeApplicationStatus';
+import { updateStatus } from './app/useCases/status/updateStatus';
+import { updateUser } from './app/useCases/users/updateUser';
+import { deleteUser } from './app/useCases/users/deleteUser';
+import { deleteApplication } from './app/useCases/applications/deleteApplication';
+import { deleteStatus } from './app/useCases/status/deleteStatus';
 
 export const router = Router();
 
@@ -25,6 +30,8 @@ const upload = multer({
   }),
 });
 
+// STATUS
+
 // Create Status
 router.post('/status', createStatus);
 
@@ -32,9 +39,12 @@ router.post('/status', createStatus);
 router.get('/status', listStatus);
 
 // Update Status
-router.patch('/status/:statusId', (req, res) => {
-  res.send('OK');
-});
+router.patch('/status/:statusId', updateStatus);
+
+// Delete Status
+router.delete('/status/:statusId', deleteStatus);
+
+// APPLICATION
 
 // Create Application
 router.post('/applications', createApplication);
@@ -46,14 +56,17 @@ router.get('/applications', listApplications);
 router.get('/status/:statusId/applications', listApplicationsByStatus);
 
 // Update Application
+router.patch('/status/:statusId', (req, res) => {
+  res.send('OK');
+});
 
 // Change Application Status
 router.patch('/applications/:applicationId', changeApplicationStatus);
 
 // Delete Application
-router.patch('/applications/:applicationId', (req, res) => {
-  res.send('OK');
-});
+router.delete('/applications/:applicationId', deleteApplication);
+
+// USER
 
 // Create User
 router.post('/users', upload.single('image'), createUser);
@@ -62,11 +75,7 @@ router.post('/users', upload.single('image'), createUser);
 router.get('/users', listUsers);
 
 // Update User
-router.patch('/user/:userId', (req, res) => {
-  res.send('OK');
-});
+router.patch('/users/:userId', updateUser);
 
 // Delete User
-router.delete('/user/:userId', (req, res) => {
-  res.send('OK');
-});
+router.delete('/users/:userId', deleteUser);
