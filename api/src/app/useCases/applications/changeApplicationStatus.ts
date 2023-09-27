@@ -7,7 +7,7 @@ export async function changeApplicationStatus(req: Request, res: Response) {
     const { applicationId } = req.params;
     const { status } = req.body;
 
-    if (!['650b890adc317d1d6fd2a55c', '650b89fadc317d1d6fd2a560', '650b8a05dc317d1d6fd2a562', '650b8a13dc317d1d6fd2a564'].includes(status)) {
+    if (!['650e2f2007f2ab8c1f95bd40', '650b89fadc317d1d6fd2a560', '650b8a05dc317d1d6fd2a562', '650b8a13dc317d1d6fd2a564'].includes(status)) {
       return res.status(400).json({
         error: 'Status should be one of these: Candidaturas, Teste Online, Entrevista, Aguardando Retorno.'
       });

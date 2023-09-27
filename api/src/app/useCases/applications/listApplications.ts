@@ -5,7 +5,8 @@ import { Application } from '../../models/Application';
 export async function listApplications(req: Request, res: Response) {
   try {
     const applications = await Application.find()
-      .sort({ createdAt: 1 });
+      .sort({ createdAt: 1 })
+      .populate('status');
 
     res.json(applications);
   } catch (error) {
