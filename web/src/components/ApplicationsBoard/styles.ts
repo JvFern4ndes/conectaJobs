@@ -1,12 +1,4 @@
-import styled from "styled-components";
-
-export const Container = styled.div`
-    width: 100%;
-    max-width: 1216px;
-    margin: 40px auto;
-    display: flex;
-    gap: 32px;
-`;
+import styled from 'styled-components';
 
 export const Board = styled.div`
     padding: 16px;
@@ -31,7 +23,7 @@ export const Board = styled.div`
     }
 `;
 
-export const OrdersContainer = styled.div`
+export const ApplicationsContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;

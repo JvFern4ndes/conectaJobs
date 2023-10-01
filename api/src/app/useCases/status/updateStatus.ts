@@ -5,15 +5,15 @@ import { Status } from '../../models/Status';
 export async function updateStatus(req: Request, res: Response) {
   try {
     const { statusId } = req.params;
-    const { imagePath, name } = req.body;
+    const { imagePath, title } = req.body;
 
-    if (!name) {
+    if (!title) {
       return res.status(400).json({
-        error: 'Name is required',
+        error: 'Title is required',
       });
     }
 
-    await Status.findByIdAndUpdate(statusId, { imagePath, name });
+    await Status.findByIdAndUpdate(statusId, { imagePath, title });
 
     res.sendStatus(204);
   } catch (error) {

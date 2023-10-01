@@ -5,15 +5,15 @@ import { Status } from '../../models/Status';
 export async function createStatus(req: Request, res: Response) {
   try {
     const imagePath = req.file?.filename;
-    const { name } = req.body;
+    const { title } = req.body;
 
-    if (!name) {
+    if (!title) {
       return res.status(400).json({
-        error: 'Name is required',
+        error: 'Title is required',
       });
     }
 
-    const status = await Status.create({ imagePath, name });
+    const status = await Status.create({ imagePath, title });
 
     res.status(201).json(status);
   } catch (error) {
