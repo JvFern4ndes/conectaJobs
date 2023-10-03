@@ -1,6 +1,8 @@
 import { useState } from "react";
+
 import { Application } from "../../types/Application";
 import { ApplicationModal } from "../ApplicationModal";
+
 import { Board, ApplicationsContainer } from "./styles";
 
 interface ApplicationsBoardProps {
@@ -11,14 +13,19 @@ interface ApplicationsBoardProps {
 
 export function ApplicationsBoard({ statusIcon, title, applications }: ApplicationsBoardProps) {
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [selectedApplication, setSelectedApplication] = useState<null | Application>(null);
 
-    function handleOpenModal() {
+    function handleOpenModal(application: Application) {
         setIsModalVisible(true);
+        setSelectedApplication(application);
     }
 
     return (
         <Board>
-            <ApplicationModal visible={isModalVisible} />
+            <ApplicationModal
+                visible={isModalVisible}
+                application={selectedApplication}
+            />
 
             <header>
                 <img src={statusIcon} alt="Status icon" />
@@ -29,7 +36,7 @@ export function ApplicationsBoard({ statusIcon, title, applications }: Applicati
             {applications.length > 0 && (
                 <ApplicationsContainer>
                     {applications.map((application) => (
-                        <button type="button" key={application._id} onClick={handleOpenModal}>
+                        <button type="button" key={application._id} onClick={() => handleOpenModal(application)}>
                             <strong>{application.title}</strong>
                             <span>{application.company}</span>
                         </button>

@@ -14,7 +14,8 @@ const applications: Application[] = [
 		"title": "Desenvolvedor",
 		"company": "Google",
 		"active": "yes",
-		"status": '6519a4bd7a931b3fc0a49b4d',
+		"status": "6519a4bd7a931b3fc0a49b4d",
+        "createdAt": "2023-09-22T00:55:54.272Z"
 	},
 ];
 

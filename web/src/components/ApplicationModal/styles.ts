@@ -54,5 +54,14 @@ export const ModalBody = styled.div`
             width: 32px;
         }
     }
+`;
 
+export const ApplicationDetails = styled.div`
+    margin-top: 32px;
+
+    > strong {
+        font-weight: 500;
+        font-size: 14px;
+        opacity: 0.8;
+    }
 `;

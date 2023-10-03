@@ -4,4 +4,5 @@ export interface Application {
     company: string;
     active: string;
     status: string;
+    createdAt: string;
 }
