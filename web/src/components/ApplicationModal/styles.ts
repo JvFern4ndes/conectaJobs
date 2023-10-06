@@ -64,4 +64,21 @@ export const ApplicationDetails = styled.div`
         font-size: 14px;
         opacity: 0.8;
     }
+
+    .application-details {
+        margin-top: 16px;
+
+        .info {
+            display: flex;
+            margin-top: 16px;
+
+            strong {
+                display: block;
+            }
+
+            img {
+                margin-right: 8px;
+            }
+        }
+    }
 `;

@@ -3,6 +3,9 @@ import ApplicationIcon from '../../assets/images/ApplicationIcon.svg';
 import OnlineTestIcon from '../../assets/images/OnlineTestIcon.svg';
 import InterviewIcon from '../../assets/images/InterviewIcon.svg';
 import WaitingReturnIcon from '../../assets/images/WaitingReturnIcon.svg';
+import CompanyIcon from '../../assets/images/CompanyIcon.svg';
+import ActiveIcon from '../../assets/images/ActiveIcon.svg';
+import DateIcon from '../../assets/images/WaitingReturnIcon.svg';
 
 import { Application } from '../../types/Application';
 
@@ -58,6 +61,30 @@ export function ApplicationModal({ visible, application }: ApplicationModalProps
 
                 <ApplicationDetails>
                     <strong>Detalhes da candidatura</strong>
+
+                    <div className='application-details'>
+                        <div className='info'>
+                            <img src={CompanyIcon} alt='Icone da Informação'></img>
+                            <div className='text'>
+                                <strong>Empresa:</strong>
+                                <span>{application.company}</span>
+                            </div>
+                        </div>
+                        <div className='info'>
+                            <img src={ActiveIcon} alt='Icone da Informação'></img>
+                            <div className='text'>
+                                <strong>Ativo:</strong>
+                                <span>{application.active === 'yes' && 'Sim'}</span>
+                            </div>
+                        </div>
+                        <div className='info'>
+                            <img src={DateIcon} alt='Icone da Informação'></img>
+                            <div className='text'>
+                                <strong>Data da candidatura:</strong>
+                                <span>{application.createdAt}</span>
+                            </div>
+                        </div>
+                    </div>
                 </ApplicationDetails>
             </ModalBody>
         </Overlay>
