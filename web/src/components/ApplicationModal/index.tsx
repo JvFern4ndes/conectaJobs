@@ -14,9 +14,10 @@ import { Overlay, ModalBody, ApplicationDetails, Actions } from "./styles";
 interface ApplicationModalProps {
     visible: boolean;
     application: Application | null;
+    onClose: () => void;
 }
 
-export function ApplicationModal({ visible, application }: ApplicationModalProps) {
+export function ApplicationModal({ visible, application, onClose }: ApplicationModalProps) {
     if (!visible || !application) {
         return null;
     }
@@ -27,7 +28,7 @@ export function ApplicationModal({ visible, application }: ApplicationModalProps
                 <header>
                     <strong>{application.title}</strong>
 
-                    <button type="button">
+                    <button type="button" onClick={onClose}>
                         <img src={CloseIcon} alt='Ícone de fechar o modal'></img>
                     </button>
                 </header>

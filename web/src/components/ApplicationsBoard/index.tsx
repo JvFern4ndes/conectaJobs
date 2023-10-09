@@ -20,11 +20,17 @@ export function ApplicationsBoard({ statusIcon, title, applications }: Applicati
         setSelectedApplication(application);
     }
 
+    function handleCloseModal() {
+        setIsModalVisible(false);
+        setSelectedApplication(null);
+    }
+
     return (
         <Board>
             <ApplicationModal
                 visible={isModalVisible}
                 application={selectedApplication}
+                onClose={handleCloseModal}
             />
 
             <header>
