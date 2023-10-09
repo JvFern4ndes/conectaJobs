@@ -82,3 +82,30 @@ export const ApplicationDetails = styled.div`
         }
     }
 `;
+
+export const Actions = styled.footer`
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+
+    .primary {
+        background: #68DDBD;
+        border-radius: 48px;
+        border: 0;
+        color: #fff;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .secondary {
+        padding: 14px 24px;
+        color: #D73035;
+        font-weight: bold;
+        border: 0;
+        background: transparent;
+        margin-top: 12px;
+    }
+`;

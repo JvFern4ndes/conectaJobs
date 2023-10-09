@@ -9,7 +9,7 @@ import DateIcon from '../../assets/images/WaitingReturnIcon.svg';
 
 import { Application } from '../../types/Application';
 
-import { Overlay, ModalBody, ApplicationDetails } from "./styles";
+import { Overlay, ModalBody, ApplicationDetails, Actions } from "./styles";
 
 interface ApplicationModalProps {
     visible: boolean;
@@ -86,6 +86,17 @@ export function ApplicationModal({ visible, application }: ApplicationModalProps
                         </div>
                     </div>
                 </ApplicationDetails>
+
+                <Actions>
+                    <button type='button' className='primary'>
+                        <img src={OnlineTestIcon} alt='Ícone Teste Online'/>
+                        <strong>Realizar Teste Online</strong>
+                    </button>
+
+                    <button type='button' className='secondary'>
+                        <strong>Excluir Candidatura</strong>
+                    </button>
+                </Actions>
             </ModalBody>
         </Overlay>
     )
