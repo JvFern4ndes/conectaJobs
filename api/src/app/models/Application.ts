@@ -21,6 +21,6 @@ export const Application = model('Application', new Schema({
   status: {
     type: Schema.Types.ObjectId,
     ref: 'Status',
-    default: '650b890adc317d1d6fd2a55c',
+    default: '6519a4bd7a931b3fc0a49b4d',
   }
 }));

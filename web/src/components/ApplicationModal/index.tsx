@@ -72,17 +72,17 @@ export function ApplicationModal({ visible, application, onClose }: ApplicationM
                             </div>
                         </div>
                         <div className='info'>
-                            <img src={ActiveIcon} alt='Icone da Informação'></img>
-                            <div className='text'>
-                                <strong>Ativo:</strong>
-                                <span>{application.active === 'yes' && 'Sim'}</span>
-                            </div>
-                        </div>
-                        <div className='info'>
                             <img src={DateIcon} alt='Icone da Informação'></img>
                             <div className='text'>
                                 <strong>Data da candidatura:</strong>
                                 <span>{application.createdAt}</span>
+                            </div>
+                        </div>
+                        <div className='info'>
+                            <img src={ActiveIcon} alt='Icone da Informação'></img>
+                            <div className='text'>
+                                <strong>Ativo:</strong>
+                                <span>{application.active === 'yes' && 'Sim'}</span>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,7 @@ export function ApplicationModal({ visible, application, onClose }: ApplicationM
                     </button>
 
                     <button type='button' className='secondary'>
-                        <strong>Excluir Candidatura</strong>
+                        <strong>Inativar Candidatura</strong>
                     </button>
                 </Actions>
             </ModalBody>
