@@ -7,6 +7,8 @@ import {
 } from './styles';
 
 import { Header } from '../components/Header';
+import { Applications } from '../components/Applications';
+import { StatusComponent } from '../components/StatusComponent';
 
 export function Main() {
     return (
@@ -14,9 +16,13 @@ export function Main() {
             <Container>
                 <Header />
 
-                <StatusContainer></StatusContainer>
+                <StatusContainer>
+                    <StatusComponent />
+                </StatusContainer>
 
-                <ApplicationsContainer></ApplicationsContainer>
+                <ApplicationsContainer>
+                    <Applications />
+                </ApplicationsContainer>
             </Container>
 
             <Footer>
