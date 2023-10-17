@@ -31,10 +31,10 @@ export function StatusComponent() {
                 return (
                     <Status onPress={() => handleSelectStatus(status._id)}>
                         <Icon>
-                            <ApplicationIcon opacity={isSelected ? 1 : 0.5} />
+                            <ApplicationIcon width={24} style={{ opacity: isSelected ? 1 : 0.5 }} />
                         </Icon>
 
-                        <Text opacity={isSelected ? 1 : 0.5} >{status.title}</Text>
+                        <Text style={{ opacity: isSelected ? 1 : 0.5 }} >{status.title}</Text>
                     </Status>
                 );
             }}

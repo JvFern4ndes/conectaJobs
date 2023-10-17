@@ -9,6 +9,7 @@ import {
 import { Header } from '../components/Header';
 import { Applications } from '../components/Applications';
 import { StatusComponent } from '../components/StatusComponent';
+import { Button } from '../components/Button';
 
 export function Main() {
     return (
@@ -26,7 +27,11 @@ export function Main() {
             </Container>
 
             <Footer>
-                <FooterContainer></FooterContainer>
+                <FooterContainer>
+                    <Button onPress={() => alert('Clicou')}>
+                        Nova Candidatura
+                    </Button>
+                </FooterContainer>
             </Footer>
         </>
     );
