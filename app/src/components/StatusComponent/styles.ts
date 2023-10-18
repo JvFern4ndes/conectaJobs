@@ -19,3 +19,8 @@ export const Icon = styled.View`
     box-shadow: 0px 2px 1px rgba(0, 0, 0, ${isAndroid ? 1 : 0.1});
     elevation: 2;
 `;
+
+export const Image = styled.Image`
+    width: 24px;
+    height: 24px;
+`;

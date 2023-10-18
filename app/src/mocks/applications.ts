@@ -24,4 +24,12 @@ export const applications = [
         "status": "6519a5007a931b3fc0a49b54",
         "createdAt": "2023-10-10T02:29:08.717Z",
     },
+    {
+        "_id": "6524b6f4eb6bd2493a9a16ddf",
+        "title": "Programador",
+        "company": "De dentro de casa",
+        "active": "yes",
+        "status": "6519a5007a931b3fc0a49b54",
+        "createdAt": "2023-10-10T02:29:08.717Z",
+    },
 ];

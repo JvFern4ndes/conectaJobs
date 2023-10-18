@@ -2,12 +2,10 @@
 import { useState } from 'react';
 import { FlatList } from 'react-native';
 
-import { ApplicationIcon } from '../../assets/Icons/ApplicationIcon';
-
 import { status } from '../../mocks/status';
 import { Text } from '../Text';
 
-import { Icon, Status } from './styles';
+import { Icon, Status, Image } from './styles';
 
 export function StatusComponent() {
     const [selectedStatus, setSelectedStatus] = useState('');
@@ -31,7 +29,12 @@ export function StatusComponent() {
                 return (
                     <Status onPress={() => handleSelectStatus(status._id)}>
                         <Icon>
-                            <ApplicationIcon width={24} style={{ opacity: isSelected ? 1 : 0.5 }} />
+                            <Image
+                                style={{ opacity: isSelected ? 1 : 0.5 }}
+                                source={{
+                                    uri: `http://192.168.0.116:3001/uploads/${status.imagePath}`,
+                                }}
+                            />
                         </Icon>
 
                         <Text style={{ opacity: isSelected ? 1 : 0.5 }} >{status.title}</Text>
