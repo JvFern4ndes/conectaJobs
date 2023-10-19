@@ -15,6 +15,11 @@ import { useState } from 'react';
 
 export function Main() {
     const [isCreateApplicationModalVisible, setIsCreateApplicationModalVisible] = useState(false);
+    const [selectedInfos, setSelectedInfos] = useState({ title: '', company: '' });
+
+    function handleSaveApplication(title: string, company: string) {
+        setSelectedInfos({ title, company });
+    }
 
     return (
         <>
@@ -32,15 +37,18 @@ export function Main() {
 
             <Footer>
                 <FooterContainer>
-                    <Button onPress={() => setIsCreateApplicationModalVisible(true)}>
-                        Nova Candidatura
-                    </Button>
+                    {!selectedInfos && (
+                        <Button onPress={() => setIsCreateApplicationModalVisible(true)}>
+                            Nova Candidatura
+                        </Button>
+                    )}
                 </FooterContainer>
             </Footer>
 
             <CreateApplicationModal
                 visible={isCreateApplicationModalVisible}
                 onClose={() => setIsCreateApplicationModalVisible(false)}
+                onSave={handleSaveApplication}
             />
         </>
     );

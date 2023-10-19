@@ -5,14 +5,22 @@ import { Button } from '../Button';
 import { Text } from '../Text';
 
 import { ModalBody, Overlay, Header, Form, Input } from './styles';
+import { useState } from 'react';
 
 interface CreateApplicationModalProps {
     visible: boolean;
     onClose: () => void;
+    onSave: (title: string, company: string) => void;
 }
 
-export function CreateApplicationModal({ visible, onClose }: CreateApplicationModalProps) {
+export function CreateApplicationModal({ visible, onClose, onSave }: CreateApplicationModalProps) {
+    const [title, setTitle] = useState('');
+    const [company, setCompany] = useState('');
 
+    function handleSave() {
+        onSave(title, company);
+        onClose();
+    }
 
     return (
         <Modal
@@ -34,15 +42,17 @@ export function CreateApplicationModal({ visible, onClose }: CreateApplicationMo
                         <Input
                             placeholder='Cargo'
                             placeholderTextColor="#666"
+                            onChangeText={setTitle}
                         />
 
                         <Input
                             style={{ marginBottom: 24 }}
                             placeholder='Empresa'
                             placeholderTextColor="#666"
+                            onChangeText={setCompany}
                         />
 
-                        <Button onPress={() => alert('Candidatou!')}>
+                        <Button onPress={handleSave} disabled={title.length === 0 || company.length === 0}>
                             Candidatar-se
                         </Button>
                     </Form>
