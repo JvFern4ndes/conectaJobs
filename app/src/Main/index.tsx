@@ -10,8 +10,12 @@ import { Header } from '../components/Header';
 import { Applications } from '../components/Applications';
 import { StatusComponent } from '../components/StatusComponent';
 import { Button } from '../components/Button';
+import { CreateApplicationModal } from '../components/CreateApplicationModal';
+import { useState } from 'react';
 
 export function Main() {
+    const [isCreateApplicationModalVisible, setIsCreateApplicationModalVisible] = useState(false);
+
     return (
         <>
             <Container>
@@ -28,11 +32,16 @@ export function Main() {
 
             <Footer>
                 <FooterContainer>
-                    <Button onPress={() => alert('Clicou')}>
+                    <Button onPress={() => setIsCreateApplicationModalVisible(true)}>
                         Nova Candidatura
                     </Button>
                 </FooterContainer>
             </Footer>
+
+            <CreateApplicationModal
+                visible={isCreateApplicationModalVisible}
+                onClose={() => setIsCreateApplicationModalVisible(false)}
+            />
         </>
     );
 }
