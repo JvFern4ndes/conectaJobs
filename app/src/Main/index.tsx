@@ -21,10 +21,17 @@ export function Main() {
         setSelectedInfos({ title, company });
     }
 
+    function handleCancelApplication() {
+        setSelectedInfos({ title: '', company: '' });
+    }
+
     return (
         <>
             <Container>
-                <Header />
+                <Header
+                    selectedInfos={selectedInfos}
+                    onCancelApplication={handleCancelApplication}
+                />
 
                 <StatusContainer>
                     <StatusComponent />
@@ -37,7 +44,7 @@ export function Main() {
 
             <Footer>
                 <FooterContainer>
-                    {!selectedInfos && (
+                    {(!selectedInfos.title || !selectedInfos.company) && (
                         <Button onPress={() => setIsCreateApplicationModalVisible(true)}>
                             Nova Candidatura
                         </Button>

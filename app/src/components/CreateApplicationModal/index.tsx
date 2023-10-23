@@ -18,6 +18,8 @@ export function CreateApplicationModal({ visible, onClose, onSave }: CreateAppli
     const [company, setCompany] = useState('');
 
     function handleSave() {
+        setTitle('');
+        setCompany('');
         onSave(title, company);
         onClose();
     }
