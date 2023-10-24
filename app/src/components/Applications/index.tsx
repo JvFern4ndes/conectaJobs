@@ -5,7 +5,7 @@ import { Text } from '../Text';
 
 import { Application } from '../../types/Application';
 
-import ComapnyIcon from '../../assets/images/CompanyIcon.png';
+import CompanyIcon from '../../assets/images/CompanyIcon.png';
 import DateIcon from '../../assets/images/DateIcon.png';
 import ActiveIcon from '../../assets/images/ActiveIcon.png';
 import ArrowCircle from '../../assets/images/ArrowCircle.png';
@@ -51,7 +51,7 @@ export function Applications() {
                             <Text weight='600' style={{ marginBottom: 16 }}>{application.title}</Text>
                             <Information style={{ marginVertical: 8 }}>
                                 <Image
-                                    source={ComapnyIcon}
+                                    source={CompanyIcon}
                                 />
                                 <Text size={14} color='#666'>Empresa: {application.company}</Text>
                             </Information>
@@ -66,7 +66,11 @@ export function Applications() {
                                     style={{ height: 11 }}
                                     source={ActiveIcon}
                                 />
-                                <Text size={14} color='#666'>Ativo: {application.active}</Text>
+                                {application.active === 'yes' ? (
+                                    <Text size={14} color='#666'>Ativo: Sim</Text>
+                                ) : (
+                                    <Text size={14} color='#666'>Ativo: Não</Text>
+                                )}
                             </Information>
                         </ApplicationDetails>
 
