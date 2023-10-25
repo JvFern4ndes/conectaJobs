@@ -12,6 +12,7 @@ import { StatusComponent } from '../components/StatusComponent';
 import { Button } from '../components/Button';
 import { CreateApplicationModal } from '../components/CreateApplicationModal';
 import { useState } from 'react';
+import { Confirmation } from '../components/Confirmation';
 
 export function Main() {
     const [isCreateApplicationModalVisible, setIsCreateApplicationModalVisible] = useState(false);
@@ -48,6 +49,10 @@ export function Main() {
                         <Button onPress={() => setIsCreateApplicationModalVisible(true)}>
                             Nova Candidatura
                         </Button>
+                    )}
+
+                    {(selectedInfos.title || selectedInfos.company) && (
+                        <Confirmation selectedInfos={selectedInfos}/>
                     )}
                 </FooterContainer>
             </Footer>
