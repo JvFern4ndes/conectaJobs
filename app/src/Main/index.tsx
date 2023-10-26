@@ -1,9 +1,13 @@
+import { useState } from 'react';
+import { ActivityIndicator } from 'react-native';
+
 import {
     Container,
     StatusContainer,
     ApplicationsContainer,
     Footer,
-    FooterContainer
+    FooterContainer,
+    CenteredContainer
 } from './styles';
 
 import { Header } from '../components/Header';
@@ -11,18 +15,18 @@ import { Applications } from '../components/Applications';
 import { StatusComponent } from '../components/StatusComponent';
 import { Button } from '../components/Button';
 import { CreateApplicationModal } from '../components/CreateApplicationModal';
-import { useState } from 'react';
 import { Confirmation } from '../components/Confirmation';
 
 export function Main() {
     const [isCreateApplicationModalVisible, setIsCreateApplicationModalVisible] = useState(false);
     const [selectedInfos, setSelectedInfos] = useState({ title: '', company: '' });
+    const [isLoading] = useState(false);
 
     function handleSaveApplication(title: string, company: string) {
         setSelectedInfos({ title, company });
     }
 
-    function handleCancelApplication() {
+    function handleResetApplication() {
         setSelectedInfos({ title: '', company: '' });
     }
 
@@ -31,28 +35,44 @@ export function Main() {
             <Container>
                 <Header
                     selectedInfos={selectedInfos}
-                    onCancelApplication={handleCancelApplication}
+                    onCancelApplication={handleResetApplication}
                 />
 
-                <StatusContainer>
-                    <StatusComponent />
-                </StatusContainer>
+                {isLoading && (
+                    <CenteredContainer>
+                        <ActivityIndicator color="#68DDBD" size='large'/>
+                    </CenteredContainer>
+                )}
 
-                <ApplicationsContainer>
-                    <Applications />
-                </ApplicationsContainer>
+                {!isLoading && (
+                    <>
+                        <StatusContainer>
+                            <StatusComponent />
+                        </StatusContainer>
+
+                        <ApplicationsContainer>
+                            <Applications />
+                        </ApplicationsContainer>
+                    </>
+                )}
             </Container>
 
             <Footer>
                 <FooterContainer>
                     {(!selectedInfos.title || !selectedInfos.company) && (
-                        <Button onPress={() => setIsCreateApplicationModalVisible(true)}>
+                        <Button
+                            onPress={() => setIsCreateApplicationModalVisible(true)}
+                            disabled={isLoading}
+                        >
                             Nova Candidatura
                         </Button>
                     )}
 
                     {(selectedInfos.title || selectedInfos.company) && (
-                        <Confirmation selectedInfos={selectedInfos}/>
+                        <Confirmation
+                            selectedInfos={selectedInfos}
+                            onConfirmApplication={handleResetApplication}
+                        />
                     )}
                 </FooterContainer>
             </Footer>

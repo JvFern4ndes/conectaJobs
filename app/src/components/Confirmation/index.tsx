@@ -1,6 +1,10 @@
+import { useState } from 'react';
+
 import { Text } from '../Text';
 
 import { Button } from '../Button';
+
+import { ApplicationConfirmedModal } from '../ApplicationConfirmedModal';
 
 import {
     InfosContainer,
@@ -19,11 +23,29 @@ interface ConfirmationProps {
         title: string;
         company: string;
     }
+    onConfirmApplication: () => void;
 }
 
-export function Confirmation({ selectedInfos }: ConfirmationProps) {
+export function Confirmation({ selectedInfos, onConfirmApplication }: ConfirmationProps) {
+    const [isLoading] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    function handleConfirmApplication() {
+        setIsModalVisible(true);
+    }
+
+    function handleOk() {
+        onConfirmApplication();
+        setIsModalVisible(false);
+    }
+
     return (
         <>
+            <ApplicationConfirmedModal
+                visible={isModalVisible}
+                onOk={handleOk}
+            />
+
             <InfosContainer>
                 <Infos>
                     <ImageInfo source={OcupationIcon} />
@@ -47,7 +69,10 @@ export function Confirmation({ selectedInfos }: ConfirmationProps) {
                     <Text size={20} weight='600'>Candidatura?</Text>
                 </QuestionContainer>
 
-                <Button onPress={() => alert('Confirmar candidatura')}>
+                <Button
+                    onPress={handleConfirmApplication}
+                    loading={isLoading}
+                >
                     Confirmar
                 </Button>
             </Summary>
