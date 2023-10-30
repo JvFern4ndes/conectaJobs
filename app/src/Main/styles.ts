@@ -31,3 +31,8 @@ export const CenteredContainer = styled.View`
     justify-content: center;
     flex: 1;
 `;
+
+export const Image = styled.Image`
+    width: 200px;
+    height: 200px;
+`;

@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 
 const isAndroid = Platform.OS == 'android';
 
-export const Status = styled.TouchableOpacity`
+export const StatusContainer = styled.TouchableOpacity`
     align-items: center;
     margin-left: 24px;
 `;

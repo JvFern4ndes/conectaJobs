@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { FlatList } from 'react-native';
 
-import { applications } from '../../mocks/applications';
 import { Text } from '../Text';
 
 import { Application } from '../../types/Application';
@@ -20,9 +20,12 @@ import {
 } from './styles';
 
 import { ApplicationModal } from '../ApplicationModal';
-import { useState } from 'react';
 
-export function Applications() {
+interface ApplicationsProps {
+    applications: Application[];
+}
+
+export function Applications({ applications }: ApplicationsProps) {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedApplication, setSelectedApplication] = useState<null | Application>(null);
 
