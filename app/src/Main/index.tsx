@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
+import axios from 'axios';
 
 import EmptyIcon from '../assets/images/EmptyIcon.png';
 
@@ -32,7 +33,13 @@ export function Main() {
     const [selectedInfos, setSelectedInfos] = useState({ title: '', company: '' });
     const [isLoading] = useState(false);
     const [applications] = useState<Application[]>(mockApplications);
-    const [status] = useState<Status[]>([]);
+    const [status, setStatus] = useState<Status[]>([]);
+
+    useEffect(() => {
+        axios.get('http://192.168.0.116:3001/status').then((response) => {
+            setStatus(response.data);
+        });
+    }, []);
 
     function handleSaveApplication(title: string, company: string) {
         setSelectedInfos({ title, company });
