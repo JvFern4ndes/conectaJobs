@@ -31,13 +31,18 @@ import { applications as mockApplications } from '../mocks/applications';
 export function Main() {
     const [isCreateApplicationModalVisible, setIsCreateApplicationModalVisible] = useState(false);
     const [selectedInfos, setSelectedInfos] = useState({ title: '', company: '' });
-    const [isLoading] = useState(false);
-    const [applications] = useState<Application[]>(mockApplications);
+    const [isLoading, setIsLoading] = useState(true);
+    const [applications, setApplications] = useState<Application[]>(mockApplications);
     const [status, setStatus] = useState<Status[]>([]);
 
     useEffect(() => {
-        axios.get('http://192.168.0.116:3001/status').then((response) => {
-            setStatus(response.data);
+        Promise.all([
+            axios.get('http://192.168.0.116:3001/status'),
+            axios.get('http://192.168.0.116:3001/applications'),
+        ]).then(([statusResponse, applicationsResponse]) => {
+            setStatus(statusResponse.data);
+            setApplications(applicationsResponse.data);
+            setIsLoading(false);
         });
     }, []);
 
