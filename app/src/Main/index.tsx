@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
-import axios from 'axios';
 
 import EmptyIcon from '../assets/images/EmptyIcon.png';
 
@@ -26,19 +25,19 @@ import { Confirmation } from '../components/Confirmation';
 import { Application } from '../types/Application';
 import { Status } from '../types/Status';
 
-import { applications as mockApplications } from '../mocks/applications';
+import { api } from '../../utils/api';
 
 export function Main() {
     const [isCreateApplicationModalVisible, setIsCreateApplicationModalVisible] = useState(false);
     const [selectedInfos, setSelectedInfos] = useState({ title: '', company: '' });
     const [isLoading, setIsLoading] = useState(true);
-    const [applications, setApplications] = useState<Application[]>(mockApplications);
+    const [applications, setApplications] = useState<Application[]>([]);
     const [status, setStatus] = useState<Status[]>([]);
 
     useEffect(() => {
         Promise.all([
-            axios.get('http://192.168.0.116:3001/status'),
-            axios.get('http://192.168.0.116:3001/applications'),
+            api.get('/status'),
+            api.get('/applications'),
         ]).then(([statusResponse, applicationsResponse]) => {
             setStatus(statusResponse.data);
             setApplications(applicationsResponse.data);
