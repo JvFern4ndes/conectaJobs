@@ -9,14 +9,16 @@ import { Status } from '../../types/Status';
 
 interface StatusProps {
     status: Status[];
+    onSelectStatus: (statusId: string) => Promise<void>;
 }
 
-export function StatusComponent({ status }: StatusProps) {
+export function StatusComponent({ status, onSelectStatus }: StatusProps) {
     const [selectedStatus, setSelectedStatus] = useState('');
 
     function handleSelectStatus(statusId: string) {
         const status = selectedStatus === statusId ? '' : statusId;
 
+        onSelectStatus(status);
         setSelectedStatus(status);
     }
 

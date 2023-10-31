@@ -45,6 +45,15 @@ export function Main() {
         });
     }, []);
 
+    async function handleSelectStatus(statusId: string) {
+        const route = !statusId
+            ? '/applications'
+            : `/status/${statusId}/applications`;
+
+        const { data } = await api.get(route);
+        setApplications(data);
+    }
+
     function handleSaveApplication(title: string, company: string) {
         setSelectedInfos({ title, company });
     }
@@ -72,6 +81,7 @@ export function Main() {
                         <StatusContainer>
                             <StatusComponent
                                 status={status}
+                                onSelectStatus={handleSelectStatus}
                             />
                         </StatusContainer>
 
