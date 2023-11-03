@@ -1,4 +1,7 @@
+import { useEffect, useState } from 'react';
+
 import { Application } from '../../types/Application';
+import { api } from '../../../utils/api';
 
 import ApplicationIcon from '../../assets/images/ApplicationIcon.svg';
 import OnlineTestIcon from '../../assets/images/OnlineTestIcon.svg';
@@ -8,58 +11,47 @@ import WaitingReturnIcon from '../../assets/images/WaitingReturnIcon.svg';
 import { ApplicationsBoard } from '../ApplicationsBoard';
 import { Container } from "./styles";
 
-const applications: Application[] = [
-    {
-		"_id": "650ce61a642dd13426d10887",
-		"title": "Desenvolvedor",
-		"company": "Google",
-		"active": "yes",
-		"status": "6519a4bd7a931b3fc0a49b4d",
-        "createdAt": "2023-09-22T00:55:54.272Z"
-	},
-    {
-        "_id": "65122b9402c036a5972c3ea1",
-		"title": "Desenvolvedor",
-		"company": "Confirm8",
-		"active": "yes",
-		"status": "6519a4e97a931b3fc0a49b52",
-		"createdAt": "2023-09-26T00:53:40.158Z",
-    },
-    {
-        "_id": "6524b6f4eb6bd493a9a16ddf",
-		"title": "Programador",
-		"company": "De dentro de casa",
-		"active": "yes",
-		"status": "6519a5007a931b3fc0a49b54",
-		"createdAt": "2023-10-10T02:29:08.717Z",
-    },
-];
+
 
 export function Applications() {
+    const [applications, setApplications] = useState<Application[]>([]);
+
+    useEffect(() => {
+        api.get('/applications')
+            .then(({ data }) => {
+                setApplications(data);
+            })
+    }, []);
+
+    const filteredApplications = applications.filter((applications) => applications.status._id === "65303fc8c71bacaf0499bd10");
+    const OnlineTest = applications.filter((applications) => applications.status._id === "65303ff1c71bacaf0499bd13");
+    const Interview = applications.filter((applications) => applications.status._id === "6530400fc71bacaf0499bd15");
+    const waitingReturn = applications.filter((applications) => applications.status._id === "65304020c71bacaf0499bd17");
+
     return (
         <Container>
             <ApplicationsBoard
                 statusIcon={ApplicationIcon}
                 title="Candidaturas"
-                applications={applications}
+                applications={filteredApplications}
             />
 
             <ApplicationsBoard
                 statusIcon={OnlineTestIcon}
                 title="Teste Online"
-                applications={[]}
+                applications={OnlineTest}
             />
 
             <ApplicationsBoard
                 statusIcon={InterviewIcon}
                 title="Entrevista"
-                applications={[]}
+                applications={Interview}
             />
 
             <ApplicationsBoard
                 statusIcon={WaitingReturnIcon}
                 title="Aguardando Retorno"
-                applications={[]}
+                applications={waitingReturn}
             />
         </Container>
     );
