@@ -17,6 +17,7 @@ import {
 
 import OcupationIcon from '../../assets/images/OcupationIcon.png';
 import CompanyIcon from '../../assets/images/CompanyIcon.png';
+import { api } from '../../../utils/api';
 
 interface ConfirmationProps {
     selectedInfos: {
@@ -27,10 +28,24 @@ interface ConfirmationProps {
 }
 
 export function Confirmation({ selectedInfos, onConfirmApplication }: ConfirmationProps) {
-    const [isLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
 
-    function handleConfirmApplication() {
+    async function handleConfirmApplication() {
+        setIsLoading(true);
+
+        await api.post('/applications', {
+            title: selectedInfos.title,
+            company: selectedInfos.company,
+        })
+            .catch((error: any) => {
+                console.log(error.message);
+            })
+            .finally(() => {
+
+            });
+
+        setIsLoading(false);
         setIsModalVisible(true);
     }
 

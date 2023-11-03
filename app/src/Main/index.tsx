@@ -33,6 +33,7 @@ export function Main() {
     const [isLoading, setIsLoading] = useState(true);
     const [applications, setApplications] = useState<Application[]>([]);
     const [status, setStatus] = useState<Status[]>([]);
+    const [isLoadingApplications, setIsLoadingApplications] = useState(false);
 
     useEffect(() => {
         Promise.all([
@@ -41,8 +42,14 @@ export function Main() {
         ]).then(([statusResponse, applicationsResponse]) => {
             setStatus(statusResponse.data);
             setApplications(applicationsResponse.data);
-            setIsLoading(false);
-        });
+
+        })
+            .catch((error: any) => {
+                console.log(error.message);
+            })
+            .finally(() => {
+                setIsLoading(false);
+            });
     }, []);
 
     async function handleSelectStatus(statusId: string) {
@@ -50,8 +57,13 @@ export function Main() {
             ? '/applications'
             : `/status/${statusId}/applications`;
 
+        setIsLoadingApplications(true);
+
+        await new Promise(resolve => setTimeout(resolve, 1000));
         const { data } = await api.get(route);
+
         setApplications(data);
+        setIsLoadingApplications(false);
     }
 
     function handleSaveApplication(title: string, company: string) {
@@ -85,18 +97,26 @@ export function Main() {
                             />
                         </StatusContainer>
 
-                        {applications.length > 0 ? (
-                            <ApplicationsContainer>
-                                <Applications
-                                    applications={applications}
-                                />
-                            </ApplicationsContainer>
-                        ) : (
+                        {isLoadingApplications ? (
                             <CenteredContainer>
-                                <Image source={EmptyIcon}  />
-
-                                <Text color='#666' style={{ marginTop: 24 }}>Nenhuma candidatura foi encontrada!</Text>
+                                <ActivityIndicator color="#68DDBD" size='large'/>
                             </CenteredContainer>
+                        ) : (
+                            <>
+                                {applications.length > 0 ? (
+                                    <ApplicationsContainer>
+                                        <Applications
+                                            applications={applications}
+                                        />
+                                    </ApplicationsContainer>
+                                ) : (
+                                    <CenteredContainer>
+                                        <Image source={EmptyIcon}  />
+
+                                        <Text color='#666' style={{ marginTop: 24 }}>Nenhuma candidatura foi encontrada!</Text>
+                                    </CenteredContainer>
+                                )}
+                            </>
                         )}
                     </>
                 )}
