@@ -32,6 +32,14 @@ export function Applications() {
         setApplications((prevState) => prevState.filter(application => application._id !== applicationId))
     }
 
+    function handleApplicationStatusChange(applicationId: string, status: Application['status']) {
+        setApplications((prevState) => prevState.map((applications) => (
+            applications._id === applicationId
+                ? { ...applications, status }
+                : applications
+        )));
+    }
+
     return (
         <Container>
             <ApplicationsBoard
@@ -39,6 +47,7 @@ export function Applications() {
                 title="Candidaturas"
                 applications={filteredApplications}
                 onInactivateApplication={handleInactivateApplication}
+                onChangeApplicationStatus={handleApplicationStatusChange}
             />
 
             <ApplicationsBoard
@@ -46,6 +55,7 @@ export function Applications() {
                 title="Teste Online"
                 applications={OnlineTest}
                 onInactivateApplication={handleInactivateApplication}
+                onChangeApplicationStatus={handleApplicationStatusChange}
             />
 
             <ApplicationsBoard
@@ -53,6 +63,7 @@ export function Applications() {
                 title="Entrevista"
                 applications={Interview}
                 onInactivateApplication={handleInactivateApplication}
+                onChangeApplicationStatus={handleApplicationStatusChange}
             />
 
             <ApplicationsBoard
@@ -60,6 +71,7 @@ export function Applications() {
                 title="Aguardando Retorno"
                 applications={waitingReturn}
                 onInactivateApplication={handleInactivateApplication}
+                onChangeApplicationStatus={handleApplicationStatusChange}
             />
         </Container>
     );
