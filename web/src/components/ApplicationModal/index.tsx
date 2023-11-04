@@ -106,8 +106,27 @@ export function ApplicationModal({
                             disabled={isLoading}
                             onClick={onChangeApplicationStatus}
                         >
-                            <img src={OnlineTestIcon} alt='Ícone Teste Online'/>
-                            <strong>Avançar etapa</strong>
+                            {application.status.title === 'Candidaturas'
+                                && (
+                                    <>
+                                        <img src={OnlineTestIcon} alt='Ícone Teste Online'/>
+                                        <strong>Ir para o Teste Online</strong>
+                                    </>
+                                )}
+                                {application.status.title === 'Teste Online'
+                                && (
+                                    <>
+                                        <img src={InterviewIcon} alt='Ícone Teste Online'/>
+                                        <strong>Ir para a Entrevista</strong>
+                                    </>
+                                )}
+                                {application.status.title === 'Entrevista'
+                                && (
+                                    <>
+                                        <img src={WaitingReturnIcon} alt='Ícone Teste Online'/>
+                                        <strong>Aguardar Retorno</strong>
+                                    </>
+                                )}
                         </button>
                     )}
 

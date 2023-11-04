@@ -59,7 +59,6 @@ export function ApplicationsBoard({ statusIcon, title, applications, onInactivat
     async function handleInactivateApplication() {
         setIsLoading(true);
 
-        await new Promise(resolve => setTimeout(resolve, 3000))
         await api.delete(`applications/${selectedApplication?._id}`)
 
         toast.success(`A candidatura para ${selectedApplication?.title} foi inativada!`)
