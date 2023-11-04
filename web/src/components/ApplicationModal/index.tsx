@@ -15,9 +15,11 @@ interface ApplicationModalProps {
     visible: boolean;
     application: Application | null;
     onClose: () => void;
+    onInactivateApplication: () => Promise<void>;
+    isLoading: boolean;
 }
 
-export function ApplicationModal({ visible, application, onClose }: ApplicationModalProps) {
+export function ApplicationModal({ visible, application, onClose, onInactivateApplication, isLoading }: ApplicationModalProps) {
     if (!visible || !application) {
         return null;
     }
@@ -89,12 +91,21 @@ export function ApplicationModal({ visible, application, onClose }: ApplicationM
                 </ApplicationDetails>
 
                 <Actions>
-                    <button type='button' className='primary'>
+                    <button
+                        type='button'
+                        className='primary'
+                        disabled={isLoading}
+                    >
                         <img src={OnlineTestIcon} alt='Ícone Teste Online'/>
                         <strong>Realizar Teste Online</strong>
                     </button>
 
-                    <button type='button' className='secondary'>
+                    <button
+                        type='button'
+                        className='secondary'
+                        onClick={onInactivateApplication}
+                        disabled={isLoading}
+                    >
                         <strong>Inativar Candidatura</strong>
                     </button>
                 </Actions>
