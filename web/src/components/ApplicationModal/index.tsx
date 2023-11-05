@@ -47,16 +47,16 @@ export function ApplicationModal({
                     <small>Status da Candidatura</small>
                     <div>
                         <span>
-                            {application.status === '6519a4bd7a931b3fc0a49b4d' && (
+                            {application.status === '65303fc8c71bacaf0499bd10' && (
                                 <img src={ApplicationIcon}></img>
                             )}
-                            {application.status === '6519a4d47a931b3fc0a49b50' && (
+                            {application.status === '65303ff1c71bacaf0499bd13' && (
                                 <img src={OnlineTestIcon}></img>
                             )}
-                            {application.status === '6519a4e97a931b3fc0a49b52' && (
+                            {application.status === '6530400fc71bacaf0499bd15' && (
                                 <img src={InterviewIcon}></img>
                             )}
-                            {application.status === '6519a5007a931b3fc0a49b54' && (
+                            {application.status === '65304020c71bacaf0499bd17' && (
                                 <img src={WaitingReturnIcon}></img>
                             )}
                         </span>

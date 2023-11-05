@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import socketIo from 'socket.io-client';
 
 import { Application } from '../../types/Application';
 import { api } from '../../../utils/api';
@@ -15,6 +16,17 @@ import { Container } from "./styles";
 
 export function Applications() {
     const [applications, setApplications] = useState<Application[]>([]);
+
+    useEffect(() => {
+        const socket = socketIo('http://localhost:3001', {
+            transports: ['websocket'],
+        });
+
+        socket.on('applications@new', (application) => {
+            console.log('Nova candidatura cadastrada', application);
+            setApplications(prevState => prevState.concat(application));
+        });
+    }, []);
 
     useEffect(() => {
         api.get('/applications')

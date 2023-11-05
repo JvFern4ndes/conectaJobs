@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { io } from '../../..';
 
 import { Application } from '../../models/Application';
 
@@ -20,6 +21,7 @@ export async function createApplication(req: Request, res: Response) {
 
     const application = await Application.create({ title, company, status });
 
+    io.emit('applications@new', application);
     res.status(201).json(application);
   } catch (error) {
     console.log(error);
