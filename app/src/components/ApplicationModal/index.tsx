@@ -69,7 +69,7 @@ export function ApplicationModal({ visible, onClose, application }: ApplicationM
 
                     <>
                         <Info style={{ marginBottom: 48 }}>
-                            <Text>{application.status}</Text>
+                            <Text>{application.status.title}</Text>
                         </Info>
 
                         <Info>

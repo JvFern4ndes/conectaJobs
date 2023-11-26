@@ -22,6 +22,8 @@ import { Button } from '../components/Button';
 import { CreateApplicationModal } from '../components/CreateApplicationModal';
 import { Confirmation } from '../components/Confirmation';
 
+import { LoginModal } from '../components/LoginModal';
+
 import { Application } from '../types/Application';
 import { Status } from '../types/Status';
 
@@ -34,6 +36,11 @@ export function Main() {
     const [applications, setApplications] = useState<Application[]>([]);
     const [status, setStatus] = useState<Status[]>([]);
     const [isLoadingApplications, setIsLoadingApplications] = useState(false);
+    const [isLoginModalInvisible, setIsLoginModalInvisible] = useState(true);
+
+    function handleCloseLoginModal() {
+        setIsLoginModalInvisible(false);
+    }
 
     useEffect(() => {
         Promise.all([
@@ -76,6 +83,11 @@ export function Main() {
 
     return (
         <>
+            <LoginModal
+                visible={isLoginModalInvisible}
+                onPress={handleCloseLoginModal}
+            />
+
             <Container>
                 <Header
                     selectedInfos={selectedInfos}

@@ -38,7 +38,7 @@ export function StatusComponent({ status, onSelectStatus }: StatusProps) {
                             <Image
                                 style={{ opacity: isSelected ? 1 : 0.5 }}
                                 source={{
-                                    uri: `http://192.168.0.116:3001/uploads/${status.imagePath}`,
+                                    uri: `${process.env.REACT_APP_LOCAL_SERVER_PORT_BASE_URL}/uploads/${status.imagePath}`,
                                 }}
                             />
                         </Icon>

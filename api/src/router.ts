@@ -44,6 +44,9 @@ router.patch('/status/:statusId', updateStatus);
 // Delete Status
 router.delete('/status/:statusId', deleteStatus);
 
+// Get Applications by Status
+router.get('/status/:statusId/applications', listApplicationsByStatus);
+
 // APPLICATION
 
 // Create Application
@@ -51,9 +54,6 @@ router.post('/applications', createApplication);
 
 // List Applications
 router.get('/applications', listApplications);
-
-// Get Applications by Status
-router.get('/status/:statusId/applications', listApplicationsByStatus);
 
 // Update Application
 router.patch('/status/:statusId', (req, res) => {

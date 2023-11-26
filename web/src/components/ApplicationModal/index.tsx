@@ -47,25 +47,25 @@ export function ApplicationModal({
                     <small>Status da Candidatura</small>
                     <div>
                         <span>
-                            {application.status === '65303fc8c71bacaf0499bd10' && (
+                            {application.status._id === '65632539ef4b5d7b80b07667' && (
                                 <img src={ApplicationIcon}></img>
                             )}
-                            {application.status === '65303ff1c71bacaf0499bd13' && (
+                            {application.status._id === '6563265eef4b5d7b80b0766a' && (
                                 <img src={OnlineTestIcon}></img>
                             )}
-                            {application.status === '6530400fc71bacaf0499bd15' && (
+                            {application.status._id  === '6563266cef4b5d7b80b0766c' && (
                                 <img src={InterviewIcon}></img>
                             )}
-                            {application.status === '65304020c71bacaf0499bd17' && (
+                            {application.status._id  === '6563272bef4b5d7b80b07676' && (
                                 <img src={WaitingReturnIcon}></img>
                             )}
                         </span>
 
                         <strong>
-                            {application.status === '6519a4bd7a931b3fc0a49b4d' && 'Candidaturas'}
-                            {application.status === '6519a4d47a931b3fc0a49b50' && 'Teste Online'}
-                            {application.status === '6519a4e97a931b3fc0a49b52' && 'Entrevista'}
-                            {application.status === '6519a5007a931b3fc0a49b54' && 'Aguardando Retorno'}
+                            {application.status._id  === '65632539ef4b5d7b80b07667' && 'Candidaturas'}
+                            {application.status._id  === '6563265eef4b5d7b80b0766a' && 'Teste Online'}
+                            {application.status._id  === '6563266cef4b5d7b80b0766c' && 'Entrevista'}
+                            {application.status._id  === '6563272bef4b5d7b80b07676' && 'Aguardando Retorno'}
                         </strong>
                     </div>
                 </div>

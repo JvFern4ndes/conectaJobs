@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: 'http://192.168.15.2:3001',
+    baseURL: process.env.REACT_APP_LOCAL_SERVER_PORT_BASE_URL,
 });

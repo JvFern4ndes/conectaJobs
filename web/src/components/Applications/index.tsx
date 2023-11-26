@@ -35,10 +35,10 @@ export function Applications() {
             })
     }, []);
 
-    const filteredApplications = applications.filter((applications) => applications.status._id === "65303fc8c71bacaf0499bd10");
-    const OnlineTest = applications.filter((applications) => applications.status._id === "65303ff1c71bacaf0499bd13");
-    const Interview = applications.filter((applications) => applications.status._id === "6530400fc71bacaf0499bd15");
-    const waitingReturn = applications.filter((applications) => applications.status._id === "65304020c71bacaf0499bd17");
+    const filteredApplications = applications.filter((applications) => applications.status._id === "65632539ef4b5d7b80b07667");
+    const OnlineTest = applications.filter((applications) => applications.status._id === "6563265eef4b5d7b80b0766a");
+    const Interview = applications.filter((applications) => applications.status._id === "6563266cef4b5d7b80b0766c");
+    const waitingReturn = applications.filter((applications) => applications.status._id === "6563272bef4b5d7b80b07676");
 
     function handleInactivateApplication(applicationId: string) {
         setApplications((prevState) => prevState.filter(application => application._id !== applicationId))

@@ -36,12 +36,12 @@ export function ApplicationsBoard({ statusIcon, title, applications, onInactivat
         const currentStatus = selectedApplication?.status._id;
         let newStatus;
 
-        if (currentStatus === "65303fc8c71bacaf0499bd10") {
-            newStatus = "65303ff1c71bacaf0499bd13";
-        } else if (currentStatus === "65303ff1c71bacaf0499bd13") {
-            newStatus = "6530400fc71bacaf0499bd15";
-        } else if (currentStatus === "6530400fc71bacaf0499bd15") {
-            newStatus = "65304020c71bacaf0499bd17";
+        if (currentStatus === "65632539ef4b5d7b80b07667") {
+            newStatus = "6563265eef4b5d7b80b0766a";
+        } else if (currentStatus === "6563265eef4b5d7b80b0766a") {
+            newStatus = "6563266cef4b5d7b80b0766c";
+        } else if (currentStatus === "6563266cef4b5d7b80b0766c") {
+            newStatus = "6563272bef4b5d7b80b07676";
         }
 
         const status = await api.get('/status');
