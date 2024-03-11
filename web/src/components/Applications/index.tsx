@@ -24,9 +24,14 @@ export function Applications() {
 
         socket.on('applications@new', (application) => {
             console.log('Nova candidatura cadastrada', application);
-            setApplications(prevState => prevState.concat(application));
+            setApplications(prevState => [
+                ...prevState,
+                application
+            ]);
         });
     }, []);
+
+    console.log(applications)
 
     useEffect(() => {
         api.get('/applications')

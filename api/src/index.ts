@@ -3,10 +3,12 @@ import http from 'node:http';
 import express from 'express';
 import mongoose from 'mongoose';
 import { Server } from 'socket.io';
+import morgan from 'morgan';
 
 import { router } from './router';
 
 const app = express();
+app.use(morgan('dev'));
 const server = http.createServer(app);
 export const io = new Server(server);
 

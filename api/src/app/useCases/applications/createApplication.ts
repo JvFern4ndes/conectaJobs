@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { io } from '../../..';
 
 import { Application } from '../../models/Application';
+import { Status } from '../../models/Status';
 
 export async function createApplication(req: Request, res: Response) {
   try {
@@ -20,6 +21,10 @@ export async function createApplication(req: Request, res: Response) {
     }
 
     const application = await Application.create({ title, company, status });
+
+    const appStatus = await Status.findById(application.status);
+
+    Object.assign(application, { status: appStatus });
 
     io.emit('applications@new', application);
     res.status(201).json(application);

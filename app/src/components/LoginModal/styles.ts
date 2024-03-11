@@ -8,8 +8,9 @@ export const ModalBody = styled.View`
 `;
 
 export const Image = styled.ImageBackground`
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 96px;
 `;
 
 export const Input = styled.TextInput`

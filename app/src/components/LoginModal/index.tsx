@@ -1,21 +1,32 @@
+import React, { useState } from 'react';
+import { Footer, Image, Input, ModalBody } from './styles';
+import { Button } from '../Button';
 import { Modal } from 'react-native';
 
-import {
-    ModalBody,
-    Footer,
-    Input,
-} from './styles';
+import LoginLogo from '../../assets/images/LoginLogo.png';
 
-import { Text } from '../Text';
-
-import { Button } from '../Button';
-
-interface ApplicationModalProps {
+interface LoginModalProps {
     visible: boolean;
     onPress: () => void;
 }
 
-export function LoginModal({ visible, onPress, }: ApplicationModalProps) {
+export const LoginModal: React.FC<LoginModalProps> = ({ visible, onPress }) => {
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+
+    const isLoginButtonDisabled = !username || !password;
+
+    const handleUsernameChange = (text: string) => {
+        setUsername(text);
+    };
+
+    const handlePasswordChange = (text: string) => {
+        setPassword(text);
+    };
+
+    const handleLoginPress = () => {
+        onPress();
+    };
 
     return (
         <Modal
@@ -25,22 +36,27 @@ export function LoginModal({ visible, onPress, }: ApplicationModalProps) {
             onRequestClose={onPress}
         >
             <ModalBody>
-                <Text
-                    style={{ marginBottom: 120 }}
-                    size={48}
-                    color=''
-                >
-                    ConectaJobs
-                </Text>
-                <Input placeholder='Usuário'></Input>
-                <Input placeholder='Senha'></Input>
+                <Image source={LoginLogo} resizeMode='contain'></Image>
+                <Input
+                    placeholder='Usuário'
+                    value={username}
+                    onChangeText={handleUsernameChange}
+                ></Input>
+                <Input
+                    placeholder='Senha'
+                    value={password}
+                    onChangeText={handlePasswordChange}
+                    secureTextEntry
+                ></Input>
             </ModalBody>
 
             <Footer>
-                <Button onPress={onPress}>
-                    Entrar
+                <Button onPress={handleLoginPress} disabled={isLoginButtonDisabled}>
+                Entrar
                 </Button>
             </Footer>
         </Modal>
     );
-}
+};
+
+export default LoginModal;

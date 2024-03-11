@@ -20,6 +20,10 @@ import { Text } from '../Text';
 import DateIcon from '../../assets/images/DateIcon.png';
 import ActiveIcon from '../../assets/images/ActiveIcon.png';
 import ModalLogo from '../../assets/images/ModalLogo.png';
+import ApplicationsIcon from '../../assets/images/ApplicationsIcon.png';
+import OnlineTestIcon from '../../assets/images/OnlineTestIcon.png';
+import InterviewIcon from '../../assets/images/InterviewIcon.png';
+import WaitingReturnIcon from '../../assets/images/WaitingReturnIcon.png';
 
 import { Close } from '../../assets/Icons/Close';
 import { Button } from '../Button';
@@ -69,7 +73,36 @@ export function ApplicationModal({ visible, onClose, application }: ApplicationM
 
                     <>
                         <Info style={{ marginBottom: 48 }}>
-                            <Text>{application.status.title}</Text>
+                            {application.status._id === '65632539ef4b5d7b80b07667' && (
+                                <DetailsImage
+                                    source={ApplicationsIcon}
+                                    resizeMode='contain'
+                                />
+                            )}
+                            {application.status._id === '6563265eef4b5d7b80b0766a' && (
+                                <DetailsImage
+                                    source={OnlineTestIcon}
+                                    resizeMode='contain'
+                                />
+                            )}
+                            {application.status._id  === '6563266cef4b5d7b80b0766c' && (
+                                <DetailsImage
+                                    source={InterviewIcon}
+                                    resizeMode='contain'
+                                />
+                            )}
+                            {application.status._id  === '6563272bef4b5d7b80b07676' && (
+                                <DetailsImage
+                                    source={WaitingReturnIcon}
+                                    resizeMode='contain'
+                                />
+                            )}
+                            <Text>
+                                {application.status._id  === '65632539ef4b5d7b80b07667' && 'Candidaturas'}
+                                {application.status._id  === '6563265eef4b5d7b80b0766a' && 'Teste Online'}
+                                {application.status._id  === '6563266cef4b5d7b80b0766c' && 'Entrevista'}
+                                {application.status._id  === '6563272bef4b5d7b80b07676' && 'Aguardando Retorno'}
+                            </Text>
                         </Info>
 
                         <Info>
@@ -82,6 +115,7 @@ export function ApplicationModal({ visible, onClose, application }: ApplicationM
                         <Info>
                             <DetailsImage
                                 source={ActiveIcon}
+                                resizeMode='contain'
                             />
 
                             {application.active === 'yes' ? (
